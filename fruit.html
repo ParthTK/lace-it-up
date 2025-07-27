@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!-- Basic -->
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <!-- Mobile Metas -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <!-- Site Metas -->
+  <meta name="keywords" content="" />
+  <meta name="description" content="" />
+  <meta name="author" content="" />
+
+  <title>Lace It Up</title>
+
+  <!-- slider stylesheet -->
+  <link rel="stylesheet" type="text/css"
+    href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.1.3/assets/owl.carousel.min.css" />
+
+  <!-- bootstrap core css -->
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+
+  <!-- fonts style -->
+  <link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet" />
+  <!-- Custom styles for this template -->
+  <link href="css/style.css" rel="stylesheet" />
+  <!-- responsive style -->
+  <link href="css/responsive.css" rel="stylesheet" />
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      // Sample sneaker data
+      const sneakers = [
+        { name: 'Jordan 1 Retro Low OG SP Travis Scott Olive', price: 144999, image: 'travis_green.jpg' },
+        { name: 'Nike SB Dunk Low Pro - Why So Sad', price: 32999, image: 'nike-sb-dunk-low-pro-why-so-sad.jpg' },
+        { name: 'Jordan 4 Retro Military Black', price: 39999, image: 'jordan-4-retro-military-black.jpg' },
+        { name: 'Nike Air Force 1 Low Supreme White', price: 15499, image: 'af1_supreme.jpg' },
+        { name: 'Jordan 1 Retro High OG Chicago Lost and Found', price: 49000, image: 'lost_and_found.jpg' },
+        { name: 'Nike SB Dunk Low Grateful Dead Bears Opti Yellow', price: 69999, image: 'grateful_dead_bears_opti.jpg' },
+        { name: 'Nike Dunk Low Off-White Lot 40', price: 65999, image: 'offwhite_lot_40.jpg' },
+        { name: 'Nike SB Dunk Low Concepts Orange Lobster', price: 45999, image: 'orange_lobster.jpg' },
+        { name: 'adidas Yeezy 700 V3 Azael', price: 50999, image: 'yeezy_700_v3_azael.jpg' },
+        { name: 'Jordan 4 Retro Fire Red (2020)', price: 45999, image: 'aj4_retro_fire_red.jpg' },
+        { name: 'Jordan 1 Retro High Dark Mocha', price: 44999, image: 'aj1_mocha.jpg' },
+        { name: 'Air Jordan 1 Retro High OG Prototype', price: 22999, image: 'aj1_prototype.jpg' },
+        { name: 'Air Jordan 1 Retro High OG SE Bubble Gum', price: 22999, image: 'aj1_bubblegum.jpg' },
+        { name: 'Air Jordan 1 Low Bred Toe', price: 20999, image: 'aj1_bred_toe.jpg' },
+        { name: 'Yeezy Foam RNR MX Carbon', price: 29999, image: 'foam_rnr_mx_carbon.jpg' },
+        { name: 'Yeezy 350 V2 CMPCT Slate Onyx', price: 15499, image: '350_v2_cmpct_slate_onyx.jpg' },
+        { name: 'Yeezy Boost 700 Bright Blue', price: 29999, image: 'yeezy_boost_700_bright_blue.jpg' },
+        { name: 'Yeezy Slide Core', price: 24499, image: 'yeezy_slide_core.jpg' },
+        { name: 'Yeezy Boost 350 V2 Yecheil', price: 31999, image: 'yeezy_boost_350_v2_yecheil.jpg' },
+        { name: 'adidas Yeezy Slides Azure', price: 13999, image: 'yeezy_slide_azure.jpg' },
+        { name: 'New Balance 2002r Rain Cloud', price: 27999, image: 'nb_2002r_rain_cloud.jpg' },
+        { name: 'New Balance 1906R White Metallic Gold', price: 28999, image: 'nb_1906r_white_metallic_gold.jpg' },
+        { name: 'Yeezy 450 Utility Black', price: 40999, image: 'yeezy_450_utility_black.jpg' },
+        { name: 'New Balance 992 JJJJound Green', price: 197999, image: 'nb_992_jound_green.jpg' },
+        { name: 'New Balance 2002R Dark Navy', price: 28999, image: 'nb_2002r_dark_navy.jpg' },
+
+        // Add more sneakers as needed
+      ];
+
+      const filterForm = document.getElementById('filterForm');
+      const sneakersContainer = document.querySelector('.sneakers_section .container');
+
+      filterForm.addEventListener('submit', function (event) {
+        event.preventDefault();
+
+        // Get selected filter values
+        const filterOption = document.getElementById('filterOption').value;
+
+        // Filter and sort sneakers based on selected values
+        const filteredSneakers = filterSneakers(sneakers, filterOption);
+
+        // Update displayed sneakers
+        displaySneakers(filteredSneakers);
+      });
+
+      // Function to filter and sort sneakers based on selected values
+      function filterSneakers(sneakers, filterOption) {
+        switch (filterOption) {
+          case 'priceLowest':
+            return sneakers.slice().sort((a, b) => a.price - b.price);
+          case 'priceHighest':
+            return sneakers.slice().sort((a, b) => b.price - a.price);
+          case 'bestSeller':
+            return sneakers.filter(sneaker => sneaker.bestSeller);
+          default:
+            return sneakers;
+        }
+      }
+
+      // Function to display sneakers
+      function displaySneakers(sneakers) {
+        sneakersContainer.innerHTML = '';
+
+        sneakers.forEach(sneaker => {
+          const sneakerBox = document.createElement('div');
+          sneakerBox.className = 'row layout_padding2';
+
+          sneakerBox.innerHTML = `
+            <div class="col-md-8">
+              <div class="sneaker_detail-box">
+                <h3>${sneaker.name}</h3>
+                <p class="mt-4 mb-5">High-performance sneakers with Air Max technology for maximum comfort.</p>
+                <p class="price">Price: Rs. ${sneaker.price}</p>
+                <div>
+                  <a href="" class="custom_dark-btn">Buy Now</a>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4 d-flex justify-content-center align-items-center">
+              <div class="sneaker_img-box d-flex justify-content-center align-items-center">
+                <img src="images/${sneaker.image}" alt="${sneaker.name}" width="250px" />
+              </div>
+            </div>
+          `;
+
+          sneakersContainer.appendChild(sneakerBox);
+        });
+      }
+    
+      // Initial display of sneakers
+      displaySneakers(sneakers);
+    });
+  </script>
+</head>
+
+<body>
+  <div class="hero_area sub_pages">
+    <!-- header section strats -->
+    <header class="header_section">
+      <div class="container">
+        <nav class="navbar navbar-expand-lg custom_nav-container pt-3">
+          <a class="navbar-brand" href="index.html">
+            <img src="images/logo.png" alt="" /><span>
+              Lace It Up
+            </span>
+          </a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <div class="d-flex ml-auto flex-column flex-lg-row align-items-center">
+              <ul class="navbar-nav  ">
+                <li class="nav-item active">
+                  <a class="nav-link" href="index.html">Home<span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="fruit.html">Sneakers</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="service.html">Sign Up</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="contact.html">Contact us</a>
+                </li>
+              </ul>
+              <form class="form-inline my-2 my-lg-0 ml-0 ml-lg-4 mb-3 mb-lg-0">
+                <button class="btn  my-2 my-sm-0 nav_search-btn" type="submit"></button>
+              </form>
+            </div>
+            <div class="quote_btn-container ml-0 ml-lg-4 d-flex justify-content-center">
+              <a href="">
+                BEHYPE
+              </a>
+            </div>
+          </div>
+        </nav>
+      </div>
+    </header>
+    <!-- end header section -->
+
+  </div>
+  <!-- Filter menu -->
+  <section class="filter_section">
+    <div class="container">
+      <h2 class="custom_heading">Filter by:</h2>
+      <form id="filterForm">
+        <label for="filterOption">Filter Option:</label>
+        <select id="filterOption" name="filterOption">
+          <option value="default">Default</option>
+          <option value="priceLowest">Price Lowest</option>
+          <option value="priceHighest">Price Highest</option>
+          <option value="bestSeller">Best Seller</option>
+        </select>
+
+        <input type="submit" value="Apply Filters">
+      </form>
+    </div>
+  </section>
+  <!-- End Filter menu -->
+  <!-- sneakers section -->
+
+  <section class="sneakers_section layout_padding-top">
+    <div class="container">
+      <h2 class="custom_heading">Latest Silhouettes</h2>
+      <p class="custom_heading-text">
+        FINESSE. CULTURE. HISTORY. ROYALTY.
+      </p>
+  
+        
+      <!-- Sneakers will be dynamically added here by JavaScript -->
+
+    </div>
+  </section>
+
+  <!-- Same as before... -->
+</body>
+
+</html>
